@@ -1,0 +1,179 @@
+body {
+	margin: 0;
+	font-family: Open Sans;
+	color: #f2f1ef;
+	font-size: 0;
+	font-weight: 300;
+	text-shadow: 1px 1px 0px rgba(50, 50, 50, 1);
+	background-image: url(https://bnetcmsus-a.akamaihd.net/cms/content_folder_media/1CZUQU4DVT711436217116016.jpg);
+	background-size: 100%;
+}
+
+.container>div {
+	display: inline-block;
+	box-sizing: border-box;
+	vertical-align: top;
+	font-size: 16px;
+	padding: 10px;
+}
+
+	#generalStats {
+		width: 500px;
+	}
+
+		#generalStats > div {
+			width: 100%;
+		}
+
+		#hero {
+			padding-bottom: 30px;
+		}
+
+			.hero-name {
+				font-family: Raleway;
+				font-weight: 800;
+				font-size: 46px;
+				display: block;
+			}
+
+			#hero > .button {
+				color: #d2527f;
+			}
+
+		#levelSlider {
+
+		}
+
+			#levelProgress:before {
+				pointer-events: none;
+				content: 'Level ' attr(value);
+				font-size: 16px;
+				position: absolute;
+				padding: 5px;
+				text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
+			}
+
+			#levelProgress {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				border: none;
+				width: 250px;
+				height: 32px;
+				cursor: pointer;
+			}
+
+			#levelProgress::-webkit-progress-bar {
+				background: #E08283;
+				-webkit-transition: background 250ms;
+				-o-transition: background 250ms;
+				transition: background 250ms;
+			}
+
+				#levelProgress:hover::-webkit-progress-bar {
+					background: #F1A9A0;
+				}
+
+			#levelProgress::-webkit-progress-value {
+				background: #F64747;
+				-webkit-transition: background 250ms;
+				-o-transition: background 250ms;
+				transition: background 250ms;
+			}
+
+				#levelProgress:hover::-webkit-progress-value {
+					background: #F62459;
+				}
+
+		#heroStats {
+			
+		}
+
+			.stat:not(:first-child) {
+				margin-top: 10px;
+			}
+
+			.stat:before {
+				display: block;
+				width: 250px;
+				padding: 5px;
+				content: attr(data-stat);
+				text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
+				box-sizing: border-box;
+			}
+
+			.stat > span {
+				display: block;
+				padding-left: 5px;
+			}
+
+			.stat-health:before {
+				background-color: #2ecc71;
+			}
+
+			.stat-mana:before {
+				background-color: #19b5fe;
+			}
+
+			.stat-attack:before {
+				background-color: #eb974e;
+			}
+
+	#calculator {
+		width: calc(100% - 500px);
+		min-width: 525px;
+	}
+
+		#calculator > div {
+			padding: 10px 5px;
+			font-size: 0;
+		}
+
+			#abilities {
+			}
+
+				#abilities > .calc-box {
+					margin: 0 5px;
+				}
+
+			#talents {
+
+			}
+
+				.level:before {
+					content: attr(data-level);
+					font-size: 40px;
+					font-weight: 800;
+					text-align: center;
+					display: block;
+					width: 100%;
+				}
+
+				.level {
+					margin: 0 5px;
+					display: inline-block;
+					width: 60px;
+					vertical-align: top;
+				}
+
+					.level > label {
+						margin: 5px 0;
+					}
+
+			.calc-box {
+				width: 60px;
+				height: 60px;
+				display: inline-block;
+				font-size: 16px;
+				box-sizing: border-box;
+				border: 1px solid #f2f1ef;
+				cursor: pointer;
+			}
+
+				.calc-box > input {
+					display: none;
+				}
+
+	#talents-chosen {
+		display: none;
+	}

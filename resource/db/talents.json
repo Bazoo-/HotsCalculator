@@ -1,0 +1,16 @@
+[
+	{
+		"id"	: 1,
+		"name" : "Blood Ritual",
+		"desc" : "Increases Health and Mana granted by Voodoo Ritual by 100%.",
+		"abilityNum" : 4,
+		"abilityValues" : [2, 3],
+		"modifiers" : ["*2", "*2"]
+	},
+
+	{
+		"id" : 2,
+		"name" : "Gargantuan",
+		"abilityId" : 2
+	}
+]

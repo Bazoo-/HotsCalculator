@@ -1,0 +1,59 @@
+[
+	{
+		"id" : 1,
+		"name" : "Voodoo Ritual",
+		"desc" : "Ability and attack damage poisons enemies for #0 additional damage over #1 seconds. If a poisoned enemy dies, Nazeebo regenerates #2% Health and #3% Mana.",
+		"values" : [20, 4, 1.95, 1],
+		"increments" : [4, 0, 0, 0]
+	},
+
+	{
+		"id" : 2,
+		"name" : "Gargantuan",
+		"mana" : 90,
+		"cd" : 60,
+		"desc" : "Summon a Gargantuan that guards you for #0 seconds. Deals #1 damage to nearby enemies when summoned, attacks for #2 damage, and can be ordered to stomp, dealing #3 damage. The Gargantuan 	deals extra damage to Minions and Structures.",
+		"values" : [20, 30, 100, 30],
+		"increments" : [0, 15, 20, 15]
+	},
+
+	{
+		"id" : 3,
+		"name" : "Corpse Spiders",
+		"mana" : 60,
+		"cd" : 10,
+		"desc" : "Deal #0 damage and create #1 Corpse Spiders that deal #2 damage. Spiders last for #3 seconds.",
+		"values" : [40, 3, 10, 4],
+		"increments" : [8, 0, 1, 0]
+	},
+
+	{
+		"id" : 4,
+		"name" : "Zombie Wall",
+		"mana" : 70,
+		"cd" : 14,
+		"desc" : "After a short delay, create a ring of Zombies surrounding the target area that deal 18 damage and last for 3 seconds.",
+		"values" : [18, 3],
+		"increments" : [2, 0]
+	},
+
+	{
+	  "id" : 5,
+	  "name" : "Plague of Toads",
+	  "mana" : 55,
+	  "cd" : 10,
+	  "desc" : "Create #0 Toads that deal #1 damage.",
+	  "values" : [5, 30],
+	  "increments" : [0, 8]
+	},
+
+	{
+	  "id" : 6,
+	  "name" : "Ravenous Spirit",
+	  "mana" : 100,
+	  "cd" : 90,
+	  "desc" : "Channel a Ravenous Spirit that deals #0 damage per second. Cannot move while channeling. Lasts for #1 seconds.",
+	  "values" : [60, 8],
+	  "increments" : [16, 0]
+	}
+]
