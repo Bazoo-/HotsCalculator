@@ -1,5 +1,11 @@
 [
 	{
+		"id" : 0,
+		"name" : "None",
+		"desc" : "This is not an ability"
+	},
+
+	{
 		"id" : 1,
 		"name" : "Voodoo Ritual",
 		"desc" : "Ability and attack damage poisons enemies for #0 additional damage over #1 seconds. If a poisoned enemy dies, Nazeebo regenerates #2% Health and #3% Mana.",

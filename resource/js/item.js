@@ -1,11 +1,11 @@
 (function(window) {
-	
+
 	"use strict";
 
 	/**
 	 * Constructor of the class Item
 	 * @param Float pValues : Value of the item at level 1
-	 * @param Float pIncrement : How much 
+	 * @param Float pIncrement : How much
 	 * @static
 	 */
 
@@ -18,29 +18,44 @@
 
 		// Correct operand?
 		if(this.values && this.increments) {
-			this.levelChangeDescription(1);
+			return this.levelChangeDescription(1);
+		} else {
+			return this.desc;
 		}
 	}
 
 	Item.prototype.levelChangeDescription = function(pLevel) {
-		
-		var newValues = [];
-		var newDesc;
-		
-		for(var i = 0; i < this.values.length; i++) {
-			newValues[i] = (this.increments[i] * pLevel) + this.values[i];
-			var regexV = new RegExp('#' + i);
-			var regexI = new RegExp('%' + i);
-			if(!i) newDesc = this.desc.replace(regex, newValues[i]);
-			newDesc = newDesc.replace(regexV, newValues[i]);
-			newDesc = newDesc.replace(regexI, this.increments[i]);
+
+		if(!this.values && !this.increments) {
+			return;
 		}
 
+		var newValues = [];
+
+		for(var i = 0; i < this.values.length; i++) {
+			newValues[i] = (this.increments[i] * pLevel) + this.values[i];
+		}
+
+		var newDesc = this.modifyDesc(newValues);
+
 		return {values : newValues, desc : newDesc};
-	}
+	};
 
-	Item.prototype.modifyItem = function(pFunction) {
+	Item.prototype.modifyItem = function(pValues, pModifiers) {
+		var newValues = this.values;
+		for (var i = 0; i < pValues.length; i++) {
+			newValues[pValues[i]]
+		}
+	};
 
+	Item.prototype.modifyDesc = function(pValues) {
+		var newDesc;
+		for(var i = 0; i < pValues.length; i++) {
+			var regexV = new RegExp('#' + i);
+			if(!i) newDesc = this.desc.replace(regex, pValues[i]);
+			newDesc = newDesc.replace(regexV, pValues[i]);
+		}
+		return newDesc;
 	}
 
 	window.Item = Item;

@@ -1,0 +1,55 @@
+[
+	{
+		"id" : 0,
+		"name" : "undefined",
+		"label" : "null"
+	},
+
+	{
+		"id" : 1,
+		"name" : "health",
+		"label" : "hp"
+	},
+
+	{
+		"id" : 2,
+		"name" : "health",
+		"label" : "hp/sec"
+	},
+
+	{
+		"id" : 3,
+		"name" : "mana",
+		"label" : "mana"
+	},
+
+	{
+		"id" : 4,
+		"name" : "mana",
+		"label" : "mana/sec"
+	},
+
+	{
+		"id" : 5,
+		"name" : "auto-attacks",
+		"label" : "atk/sec"
+	},
+
+	{
+		"id" : 6,
+		"name" : "auto-attacks",
+		"label" : "dmg"
+	},
+
+	{
+		"id" : 7,
+		"name" : "fury",
+		"label" : "fury"
+	},
+
+	{
+		"id" : 8,
+		"name" : "brew",
+		"label" : "brew"
+	}
+]

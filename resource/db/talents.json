@@ -1,11 +1,17 @@
 [
 	{
+		"id"	: 0,
+		"name" : "Undefined",
+		"desc" : "Is not in the database yet."
+	},
+
+	{
 		"id"	: 1,
 		"name" : "Blood Ritual",
 		"desc" : "Increases Health and Mana granted by Voodoo Ritual by 100%.",
 		"abilityNum" : 4,
 		"abilityValues" : [2, 3],
-		"modifiers" : ["*2", "*2"]
+		"modifiers" : [0, 0, "*2", "*2"]
 	},
 
 	{
