@@ -1,49 +1,55 @@
-var levelProgressBar = document.getElementById('levelProgress');
+(function(window) {
 
-levelProgressBar.addEventListener('mousedown', function(e) {
-	changeLevel(e);
-	this.addEventListener('mousemove', changeLevel);
-});
+	"use strict";
 
-window.addEventListener('mouseup', function() {
-	levelProgressBar.removeEventListener('mousemove', changeLevel);
-});
+	var levelProgressBar = document.getElementById('levelProgress');
 
-function changeLevel(e) {
-	var x = e.pageX - levelProgressBar.offsetLeft;
-	levelProgressBar.value = Math.round(x * levelProgressBar.max / levelProgressBar.offsetWidth);
-	if (levelProgressBar.value === 0) levelProgressBar.value = 1;
-	modifyStats();
-}
+	levelProgressBar.addEventListener('mousedown', function(e) {
+		changeLevel(e);
+		this.addEventListener('mousemove', changeLevel);
+	});
 
-function modifyStats() {
+	window.addEventListener('mouseup', function() {
+		levelProgressBar.removeEventListener('mousemove', changeLevel);
+	});
 
-}
+	function changeLevel(e) {
+		var x = e.pageX - levelProgressBar.offsetLeft;
+		levelProgressBar.value = Math.round(x * levelProgressBar.max / levelProgressBar.offsetWidth);
+		if (levelProgressBar.value === 0) levelProgressBar.value = 1;
+		modifyStats();
+	}
 
-var heroesDb, statsDb, abilitiesDb, talentsDb;
-$.getJSON('resource/db/heroes.json', function(data){
-	heroesDb = data;
-});
-$.getJSON('resource/db/stats.json', function(data){
-	statsDb = data;
-});
-$.getJSON('resource/db/abilities.json', function(data){
-	abilitiesDb = data;
-});
-$.getJSON('resource/db/talents.json', function(data){
-	talentsDb = data;
-});
+	function modifyStats() {
 
-Hero.prototype.heroes = heroesDb;
-Stat.prototype.stats = statsDb;
-Ability.prototype.abilities = Talent.prototype.abilitiesDb = abilitiesDb;
-Talent.prototype.talentsDb = talentsDb;
+	}
 
-var hero = new Hero(1);
-var objects = hero.getObjects();
-var abilities = objects.abilities;
-var stats = objects.stats;
+	var heroesDb, statsDb, abilitiesDb, talentsDb;
+	$.getJSON('resource/db/heroes.json', function(data){
+		heroesDb = data;
+	});
+	$.getJSON('resource/db/stats.json', function(data){
+		statsDb = data;
+	});
+	$.getJSON('resource/db/abilities.json', function(data){
+		abilitiesDb = data;
+	});
+	$.getJSON('resource/db/talents.json', function(data){
+		talentsDb = data;
+	});
 
-Talent.prototype.abilities = abilities;
+	Hero.prototype.heroes = heroesDb;
+	Stat.prototype.stats = statsDb;
+	Ability.prototype.abilities = Talent.prototype.abilitiesDb = abilitiesDb;
+	Talent.prototype.talentsDb = talentsDb;
 
-var talents = Hero.tierTalents();
+	var hero = new Hero(1);
+	var objects = hero.getObjects();
+	var abilities = objects.abilities;
+	var stats = objects.stats;
+
+	Talent.prototype.abilities = abilities;
+
+	var talents = Hero.tierTalents();
+
+}(window));
