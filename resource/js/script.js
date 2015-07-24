@@ -20,10 +20,19 @@ function modifyStats() {
 
 }
 
-var heroesDb = $.getJSON('resource/db/heroes.json');
-var statsDb = $.getJSON('resource/db/stats.json');
-var abilitiesDb = $.getJSON('resource/db/abilities.json');
-var talentsDb = $.getJSON('resource/db/talents.json');
+var heroesDb, statsDb, abilitiesDb, talentsDb;
+$.getJSON('resource/db/heroes.json', function(data){
+	heroesDb = data;
+});
+$.getJSON('resource/db/stats.json', function(data){
+	statsDb = data;
+});
+$.getJSON('resource/db/abilities.json', function(data){
+	abilitiesDb = data;
+});
+$.getJSON('resource/db/talents.json', function(data){
+	talentsDb = data;
+});
 
 Hero.prototype.heroes = heroesDb;
 Stat.prototype.stats = statsDb;
