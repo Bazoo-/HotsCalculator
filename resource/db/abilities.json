@@ -58,7 +58,7 @@
 	  "name" : "Ravenous Spirit",
 	  "mana" : 100,
 	  "cd" : 90,
-	  "desc" : "Channel a Ravenous Spirit that deals #0 damage per second. Cannot move while channeling. Lasts for #1 seconds.",
+	  "desc" : "Channel a Ravenous Spirit that deals #0 damage per second. Cannot move while channeling. Lasts for #1 seconds.\n Channeled ability.",
 	  "values" : [60, 8],
 	  "increments" : [16, 0]
 	}

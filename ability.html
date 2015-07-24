@@ -1,87 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Create ability</title>
-</head>
-<body>
-	<form action="">
-		Name:<input type="text" id="name"><br><br>
-		Mana name:<input type="text" id="manaName" value="mana"><br><br>
-		Mana amt:<input type="number" id="mana"><br><br>
-		Cooldown:<input type="number" id="cd"><br><br>
-		Desc:<textarea id="desc" cols="30" rows="10"></textarea><br><br>
-		<input type="button" id="submit" value="Submit">
-	</form>
-	<div id="result"></div>
-	<script>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Create ability</title>
+		</head>
+		<body>
+			<form action="">
+				Name:<input type="text" id="name"><br><br>
+				Mana name:<input type="text" id="manaName" value="mana"><br><br>
+				Mana amt:<input type="number" id="mana"><br><br>
+				Cooldown:<input type="number" id="cd"><br><br>
+				Desc:<textarea id="desc" cols="30" rows="10"></textarea><br><br>
+				<input type="button" id="submit" value="Submit">
+			</form>
+			<div id="result"></div>
+			<script>
 
-		document.getElementById('submit').addEventListener('click', submit);
-		var name, mname, mana, cd, desc;
-		aname = document.getElementById('name');
-		mname = document.getElementById('manaName');
-		mana = document.getElementById('mana');
-		cd = document.getElementById('cd');
-		desc = document.getElementById('desc');
+				var ar = [];
 
-		var resultDiv = document.getElementById('result');
+				document.getElementById('submit').addEventListener('click', submit);
+				var name, mname, mana, cd, desc;
+				aname = document.getElementById('name');
+				mname = document.getElementById('manaName');
+				mana = document.getElementById('mana');
+				cd = document.getElementById('cd');
+				desc = document.getElementById('desc');
 
-		function submit() {
-			var re = /\+?\d+(?:[\.]\d+)?( per level)?/g;
-			var numbers = desc.value.match(re);
-			var result = {};
-			if(numbers) {
-				result.values = desc.value.match(re);
-				result.increments = [];
-				for (i=0; i < numbers.length; i++){
-					if(isNaN(numbers[i])) {
-						result.increments[i-1] = numbers[i].match(/\d+(?:[\.]\d+)?/)[0];
-						result.values.splice(i,1);
-					} else {
-						if(!i) {
-							result.increments[i] = 0;
-						} else {
-							result.increments[i-1] = 0;
+				var resultDiv = document.getElementById('result');
+
+				function submit() {
+					var re = /\+?\d+(?:[\.]\d+)?( per level)?/g;
+					var numbers = desc.value.match(re);
+					var result = {};
+					if(numbers) {
+						result.values = desc.value.match(re);
+						result.increments = [];
+						for (i=0; i < numbers.length; i++){
+							if(isNaN(numbers[i])) {
+								result.increments[i-1] = numbers[i].match(/\d+(?:[\.]\d+)?/)[0];
+								result.values.splice(i,1);
+							} else {
+								if(!i) {
+									result.increments[i] = 0;
+								} else {
+									result.increments[i-1] = 0;
+								}
+							}
 						}
 					}
+
+					re = / \(\+\d+(?:[\.]\d+)? per level\)/g;
+					result.desc = desc.value.replace(re, "");
+
+					re = /\d+(?:[\.]\d+)?/g;
+					var x = 0;
+					result.desc = result.desc.replace(re, function(){return "#" + (x++);});
+
+					getResult(result);
 				}
-			}
 
-			re = / \(\+\d+(?:[\.]\d+)? per level\)/g;
-			result.desc = desc.value.replace(re, "");
+				function getResult(obj) {
+					var values,increments;
+					if (obj.values) {
+						values = '"values" : [';
+						if (obj.increments) increments = '"increments" : [';
 
-			re = /\d+(?:[\.]\d+)?/g;
-			var x = 0;
-			result.desc = result.desc.replace(re, function(){return "#" + (x++);});
-
-			getResult(result);
-		}
-
-		function getResult(obj) {
-			var values,increments;
-			if (obj.values) {
-				values = '"values" : [';
-				if (obj.increments) increments = '"increments" : [';
-
-				for (var i = 0; i < obj.values.length; i++) {
-					values += obj.values[i];
-					values += i < obj.values.length-1 ? ', ' : ']';
-					if (obj.increments) {
-						increments += obj.increments[i];
-						increments += i < obj.increments.length-1 ? ', ' : ']';
+						for (var i = 0; i < obj.values.length; i++) {
+							values += obj.values[i];
+							values += i < obj.values.length-1 ? ', ' : ']';
+							if (obj.increments) {
+								increments += obj.increments[i];
+								increments += i < obj.increments.length-1 ? ', ' : ']';
+							}
+						};
 					}
-				};
-			}
 
-			var text = '{<br>&nbsp&nbsp"id" : ,<br>&nbsp&nbsp"name" : "' + aname.value + '",<br>';
-			if(mname.value) text += '&nbsp&nbsp"' + mname.value + '" : ' + mana.value + ',<br>';
-			text += '&nbsp&nbsp"cd" : ' + cd.value + ',<br>&nbsp&nbsp"desc" : "' + obj.desc + '"';
-			if(values) text += ',<br>&nbsp&nbsp' + values;
-			if(increments) text += ',<br>&nbsp&nbsp' + increments;
-			text += '<br>}';
+					var text = '{<br>&nbsp&nbsp"id" : ,<br>&nbsp&nbsp"name" : "' + aname.value + '",<br>';
+					if(mname.value) text += '&nbsp&nbsp"' + mname.value + '" : ' + mana.value + ',<br>';
+					text += '&nbsp&nbsp"cd" : ' + cd.value + ',<br>&nbsp&nbsp"desc" : "' + obj.desc + '"';
+					if(values) text += ',<br>&nbsp&nbsp' + values;
+					if(increments) text += ',<br>&nbsp&nbsp' + increments;
+					text += '<br>}';
 
-			resultDiv.innerHTML = text;
-		}
-	</script>
-</body>
-</html>
+					resultDiv.innerHTML = text;
+				}
+			</script>
+		</body>
+	</html>

@@ -9,14 +9,181 @@
 		"id"	: 1,
 		"name" : "Blood Ritual",
 		"desc" : "Increases Health and Mana granted by Voodoo Ritual by 100%.",
-		"abilityNum" : 4,
-		"abilityValues" : [2, 3],
-		"modifiers" : [0, 0, "*2", "*2"]
+		"abilitiesNum" : [4],
+		"abilitiesMods" : [[0, 0, "*1", "*1"]]
 	},
 
 	{
 		"id" : 2,
 		"name" : "Gargantuan",
 		"abilityId" : 2
-	}
+	},
+
+	{
+		"id" : 3,
+		"name" : "Annihilating Spirit",
+		"desc" : "Increases the range of the Ravenous Spirit by 50% and Movement Speed by 30%."
+	},
+
+	{
+		"id" : 4,
+		"name" : "Dead Rush",
+		"desc" : "Upon expiring, up to 5 remaining Zombies uproot and attack nearby enemies for 3 seconds."
+	},
+
+	{
+		"id" : 5,
+		"name" : "Death Ritual",
+		"desc" : "Permanently gain 5 Health and 3 Mana when a Minion dies under Voodoo Ritual."
+	},
+
+	{
+		"id" : 6,
+		"name" : "Fresh Corpses",
+		"desc" : "Zombies deal 50% more damage.",
+		"abilitiesNum" : [1],
+		"abilitiesMods" : [["*.5", 0]],
+	},
+
+	{
+		"id" : 7,
+		"name" : "Gidbinn",
+		"desc" : "Increases the explosion area of Plague Toads and the duration of your Zombie Wall and Corpse Spiders by 25%.",
+		"abilitiesNum" : [0, 1],
+		"abilitiesMods" : [[0, 0, 0, "*.25"], [0, "*.25"]]
+	},
+
+	{
+		"id" : 8,
+		"name" : "Humongoid",
+		"desc" : "Gargantuan lasts until killed instead of timing out, and deals 100% more damage against non-Heroic targets."
+	},
+
+	{
+		"id" : 9,
+		"name" : "Infested Toads",
+		"desc" : "Toads explode into Corpse Spiders upon death."
+	},
+
+	{
+		"id" : 10,
+		"name" : "Leaping Spiders",
+		"desc" : "Corpse Spiders leap at their targets and deal 25% more damage.",
+		"abilitiesNum" : [0],
+		"abilitiesMods" : [["*.25", 0, 0, 0]]
+	},
+
+	{
+		"id" : 11,
+		"name" : "Ravenous Spirit",
+		"abilityId" : 6
+	},
+
+	{
+		"id" : 12,
+		"name" : "Specialized Toxin",
+		"desc" : "Increases the damage dealt to Heroes from Voodoo Ritual by 100%."
+	},
+
+	{
+		"id" : 13,
+		"name" : "Spider Cluster",
+		"desc" : "Corpse Spiders creates 3 more spiders over 3 seconds.",
+		"abilitiesNum" : [0],
+		"abilitiesMods" : [[0, 3, 0, 0]]
+	},
+
+	{
+		"id" : 14,
+		"name" : "Toads of Hugeness",
+		"desc" : "Toad damage is increased by 20% each time they hop."
+	},
+
+	{
+		"id" : 15,
+		"name" : "Demolitionist",
+		"desc" : "Basic Attacks against Structures destroy 1 ammo and deal an additional 10% damage."
+	},
+
+	{
+		"id" : 16,
+		"name" : "Bolt of the Storm",
+		"desc" : "Activate to teleport to a nearby location."
+	},
+
+	{
+		"id" : 17,
+		"name" : "Gathering Power",
+		"desc" : "Passively grants 5% Ability Power. Each Hero takedown increases this bonus by 2% to a maximum of 15% . This bonus Ability Power is reset to 5% on death."
+	},
+
+	{
+		"id" : 18,
+		"name" : "Envenom",
+		"desc" : "Activate to poison an enemy Hero, dealing #0 damage over #1 seconds.",
+		"values" : [209.88, 10],
+		"increments" : [29.92, 0]
+	},
+
+	{
+		"id" : 19,
+		"name" : "Promote",
+		"desc" : "Activate to cause an allied lane Minion to take 75% reduced damage from non-Heroic targets and deal 100% bonus damage to non-Heroic targets for 30 seconds. Has 2 charges."
+	},
+
+	{
+		"id" : 20,
+		"name" : "Mercenary Lord",
+		"desc" : "Siege and Bruiser Mercenaries near your hero deal 50% more damage."
+	},
+
+	{
+		"id" : 21,
+		"name" : "Clairvoyance",
+		"desc" : "Activate to reveal an area for 10 seconds. Enemies in the area are revealed for 4 seconds."
+	},
+
+	{
+		"id" : 22,
+		"name" : "Calldown: MULE",
+		"desc" : "Activate to calldown a Mule that repairs Structures, one at a time, near target point for 40 seconds, healing for 100 Health every 1 second. Grants 1 ammo every 3 seconds."
+	},
+
+	{
+		"id" : 23,
+		"name" : "Sprint",
+		"desc" : "Activate to gain 75% Movement Speed for 3 seconds."
+	},
+
+	{
+		"id" : 24,
+		"name" : "Ice Block",
+		"desc" : "Activate to place yourself in Stasis and gain Invulnerability for 3 seconds."
+	},
+
+	{
+		"id" : 25,
+		"name" : "Stoneskin",
+		"desc" : "Activate to gain 30% of your maximum Health as a Shield for 5 seconds."
+	},
+
+	{
+		"id" : 26,
+		"name" : "Fury of the Storm",
+		"desc" : "Every #0 seconds, your next basic attack will deal an additional #1 damage to the target, and #2 damage to all nearby Minions and Mercenaries.",
+		"values" : [5, 29, 44],
+		"increments" : [0, 9, 24]
+	},
+
+	{
+		"id" : 27,
+		"name" : "Bribe",
+		"desc" : "Kill enemy Minions to gain stacks of Bribe. Use 20 stacks to bribe target Mercenary, instantly defeating them. Does not work on Bosses."
+	},
+
+	{
+		"id" : ,
+		"name" : "",
+		"desc" : ""
+	},
 ]

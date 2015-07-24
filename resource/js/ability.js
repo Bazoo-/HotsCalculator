@@ -2,31 +2,39 @@
 
 	"use strict";
 
+	Ability.prototype.abilities = false;
+
 	/**
 	 * Constructor of the class Ability
-	 * @param Float pValues : Value of the item at level 1
-	 * @param Float pIncrement : How much
+	 * @param Int pId : Id of the ability
 	 * @static
 	 */
 
 	function Ability(pId) {
-		this.abilityName = pName;
-		this.desc = pDescription;
 
-		this.values = pValues;
-		this.increments = pIncrements;
+		if(!this.abilities) throw "The abilities database needs to be defined";
 
-		// Correct operand?
-		if(this.values && this.increments) {
-			return this.levelChangeDescription(1);
-		} else {
-			return this.desc;
+		var ability = this.abilities[pId];
+
+		Item.call(this,
+			ability.name,
+			ability.desc,
+			ability.values,
+			ability.increments
+		);
+
+		var keys = Object.keys(ability);
+		var mismatch = ['name', 'desc', 'values', 'increments'];
+
+		for (var i = 0; i < keys.length; i++) {
+			if(~ mismatch.indexOf(keys[i])) {
+				this[keys[i]] = ability[keys[i]];
+			}
 		}
 	}
 
-	Ability.prototype.createAbility = function() {
-
-	};
+	Ability.prototype = Object.create(Item.prototype);
+	Ability.prototype.constructor = Ability;
 
 	window.Ability = Ability;
 

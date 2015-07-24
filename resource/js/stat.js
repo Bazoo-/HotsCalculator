@@ -2,19 +2,30 @@
 
 	"use strict";
 
+	Stat.prototype.stats = false;
+
 	/**
-	 * Constructor of the class Stat
+	 * Constructor of the class Stat (Inherits from the class Item)
 	 * @param Int pId : Id of the stat in the database
 	 * @param Float pValue : Value of the stat at level 1
-	 * @param Float pIncrement : How much
+	 * @param Float pIncrement : How much the value of the stat increments per level
 	 * @static
 	 */
 
-	function Stat(pId) {
-		this.statClass = pClass;
-		this.statValue = pValue;
-		this.statIncrement = pIncrement;
+	function Stat(pId, pValue, pIncrement) {
+
+		if(!this.stats) throw "The stats database needs to be defined";
+
+		this.stat = this.stats[pId];
+
+		var value = [pValue];
+		var increment = [pIncrement];
+
+		Item.call(this, this.stat.name, this.stat.label, value, increment);
 	}
+
+	Stat.prototype = Object.create(Item.prototype);
+	Stat.prototype.constructor = Stat;
 
 	window.Stat = Stat;
 

@@ -18,7 +18,7 @@
 	 * @static
 	 **/
 
-	Maths.multiply = function(pValues) {
+	Maths.prototype.multiply = function(pValues) {
 		var result = pValues[0];
 
 		for (var i = 1; i < pValues.length; i++) {
@@ -28,7 +28,7 @@
 		return result;
 	};
 
-	Maths.divide = function(pValues) {
+	Maths.prototype.divide = function(pValues) {
 		var result = pValues[0];
 
 		for (var i = 1; i < pValues.length; i++) {
@@ -38,7 +38,7 @@
 		return result;
 	};
 
-	Maths.add = function(pValues) {
+	Maths.prototype.add = function(pValues) {
 		var result = pValues[0];
 
 		for (var i = 1; i < pValues.length; i++) {
@@ -48,7 +48,7 @@
 		return result;
 	};
 
-	Maths.substact = function(pValues) {
+	Maths.prototype.substact = function(pValues) {
 		var result = pValues[0];
 
 		for (var i = 1; i < pValues.length; i++) {
@@ -56,6 +56,12 @@
 		}
 
 		return result;
+	};
+
+	// Random range
+
+	Maths.prototype.randomRange = function(pMin, pMax) {
+  	return Math.floor(Math.random() * (pMax - pMin + 1)) + pMin;
 	};
 
 	window.Maths = Maths;
