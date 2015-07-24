@@ -1,5 +1,11 @@
 [
 	{
+		"id" : 0,
+		"name" : "Unknown",
+		"role" : "Not a Hero"
+	},
+
+	{
 		"id" : 1,
 		"name" : "Nazeebo",
 		"role" : "ranged specialist",
