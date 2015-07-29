@@ -46,6 +46,8 @@
 				Stat.prototype.stats = database.stats;
 				Ability.prototype.abilities = Talent.prototype.abilitiesDb = database.abilities;
 				Talent.prototype.talentsDb = database.talents;
+
+				changeHero();
 			}
 		}
 
