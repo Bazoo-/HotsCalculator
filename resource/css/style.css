@@ -1,7 +1,7 @@
 @font-face {
     font-family: Icons;
     src: url('../fonts/icons.ttf');
-}
+}
 
 -webkit-@keyframes glow {
   from { box-shadow: 0 0 5px #22A7F0; }
@@ -11,6 +11,20 @@
 @keyframes glow {
   from { box-shadow: 0 0 5px #22A7F0; }
   to { box-shadow: 0 0 20px #22A7F0; }
+}
+
+@keyframes moveBg {
+  0% { background-position: 50% 50%; }
+  14% { background-position: 82% 66%; }
+  21% { background-position: 61% 23%; }
+  38% { background-position: 65% 44%; }
+  41% { background-position: 81% 40%; }
+  59% { background-position: 48% 82%; }
+  63% { background-position: 9% 33%; }
+  76% { background-position: 49% 14%; }
+  81% { background-position: 88% 50%; }
+  91% { background-position: 68% 56%; }
+  100% { background-position: 50% 50%; }
 }
 
 body {
@@ -219,6 +233,10 @@ body {
 		height: 200px;
 		z-index: 0;
 		background-size: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid rgba(242, 241, 239, 0.5);
+    outline: 1px solid #1d1d1d;
 	}
 
 		#tooltip::before {
@@ -233,29 +251,54 @@ body {
 
 			background-image: inherit;
 			background-repeat: no-repeat;
-			background-position: 50%;
-			background-size: cover;
+			background-size: 500px 500px;
+
+      -webkit-filter: blur(5px);
+      filter: blur(5px);
+
+      -webkit-animation-name: moveBg;
+      animation-name: moveBg;
+      -webkit-animation-duration: 10s;
+      animation-duration: 10s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
 
 			opacity: 0.75;
 		}
 
 		#tooltip > div {
-			height: 100%;
+      width: 100%;
 			display: inline-block;
 			font-size: 14px;
 			vertical-align: top;
 			box-sizing: border-box;
 		}
 
-			#tooltip > .tip-stats {
-				background-color: #f2f1ef;
-				width: 60px;
+			#tooltip > .tip-info {
+				padding: 10px;
+				background-color: rgba(23, 23, 23, 0.5);
+        height: 100%;
+			}
+
+				.tip-name {
+					font-size: 26px;
+					font-family: Raleway;
+				}
+
+				.tip-desc > p {
+					margin-top: 0;
+				}
+
+      #tooltip > .tip-stats {
+				position: absolute;
+        bottom: 0;
+        left: 0;
 			}
 
 				.tip-stats > span {
+          width: 60px;
 					display: inline-block;
-					width: 100%;
-					margin-bottom: 5px;
+					margin-right: 2px;
 					text-align: right;
 					padding: 3px 7px;
 					box-sizing: border-box;
@@ -271,7 +314,6 @@ body {
 						top: 50%;
 						-webkit-transform: translateY(-50%);
 						-ms-transform: translateY(-50%);
-						-o-transform: translateY(-50%);
 						transform: translateY(-50%);
 					}
 
@@ -299,20 +341,11 @@ body {
 							content: 'e';
 						}
 
-			#tooltip > .tip-info {
-				width: 300px;
-				padding: 10px;
-				background-color: rgba(23, 23, 23, 0.5);
-			}
-
-				.tip-name {
-					font-size: 26px;
-					font-family: Raleway;
-				}
-
-				.tip-desc > p {
-					margin-top: 0;
-				}
+    #tooltip > canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
 
 	#talents-chosen {
 		display: none;
