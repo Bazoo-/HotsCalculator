@@ -19,6 +19,8 @@
 		this.name = hero.name;
 		this.role = hero.role;
 		this.allTalents = hero.talents;
+		this.abilities = [];
+		this.stats = [];
 
 		for (var i = 0; i < hero.abilities.length; i++) {
 			this.abilities[i] = new Ability(hero.abilities[i]);

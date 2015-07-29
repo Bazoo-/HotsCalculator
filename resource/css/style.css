@@ -1,3 +1,18 @@
+@font-face {
+    font-family: Icons;
+    src: url('../fonts/icons.ttf');
+}
+
+-webkit-@keyframes glow {
+  from { box-shadow: 0 0 5px #22A7F0; }
+  to { box-shadow: 0 0 20px #22A7F0; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px #22A7F0; }
+  to { box-shadow: 0 0 20px #22A7F0; }
+}
+
 body {
 	margin: 0;
 	font-family: Open Sans;
@@ -9,138 +24,134 @@ body {
 	background-size: 100%;
 }
 
-.container>div {
+.left-side {
+	width: 500px;
+}
+
+.right-side {
+	width: calc(100% - 500px);
+	min-width: 525px;
+}
+
+.container>* {
 	display: inline-block;
 	box-sizing: border-box;
-	vertical-align: top;
-	font-size: 16px;
+	width: 100%;
+	font-size: 0;
 	padding: 10px;
 }
 
-	#generalStats {
-		width: 500px;
+	header {
+		background-color: #f2f1ef;
 	}
 
-		#generalStats > div {
-			width: 100%;
+		header > div {
+			display: inline-block;
+			vertical-align: middle;
 		}
 
-		#hero {
-			padding-bottom: 30px;
-		}
+			#hero {}
 
-			.hero-name {
-				font-family: Raleway;
-				font-weight: 800;
-				font-size: 46px;
-				display: block;
-			}
-
-			#hero > .button {
-				color: #d2527f;
-			}
-
-		#levelSlider {
-
-		}
-
-			#levelProgress:before {
-				pointer-events: none;
-				content: 'Level ' attr(value);
-				font-size: 16px;
-				position: absolute;
-				padding: 5px;
-				text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
-			}
-
-			#levelProgress {
-				-webkit-appearance: none;
-				-moz-appearance: none;
-				appearance: none;
-				border: none;
-				width: 250px;
-				height: 32px;
-				cursor: pointer;
-			}
-
-			#levelProgress::-webkit-progress-bar {
-				background: #E08283;
-				-webkit-transition: background 250ms;
-				-o-transition: background 250ms;
-				transition: background 250ms;
-			}
-
-				#levelProgress:hover::-webkit-progress-bar {
-					background: #F1A9A0;
+				.hero-name {
+					font-family: Raleway;
+          color: #F64747;
+					font-size: 46px;
+					display: block;
 				}
 
-			#levelProgress::-webkit-progress-value {
-				background: #F64747;
-				-webkit-transition: background 250ms;
-				-o-transition: background 250ms;
-				transition: background 250ms;
-			}
+			#levelSlider {}
 
-				#levelProgress:hover::-webkit-progress-value {
-					background: #F62459;
+				#levelProgress:before {
+					pointer-events: none;
+					content: 'Level ' attr(value);
+					font-size: 16px;
+					position: absolute;
+					padding: 5px;
+					text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
 				}
 
-		#heroStats {
-			
-		}
+				#levelProgress {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+					border: none;
+					width: 250px;
+					height: 32px;
+					cursor: col-resize;
+				}
 
-			.stat:not(:first-child) {
-				margin-top: 10px;
-			}
+				#levelProgress::-webkit-progress-bar {
+					background: #E08283;
+					-webkit-transition: background 250ms;
+					-o-transition: background 250ms;
+					transition: background 250ms;
+				}
 
-			.stat:before {
-				display: block;
-				width: 250px;
-				padding: 5px;
-				content: attr(data-stat);
-				text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
-				box-sizing: border-box;
-			}
+					#levelProgress:hover::-webkit-progress-bar {
+						background: #F1A9A0;
+					}
 
-			.stat > span {
-				display: block;
-				padding-left: 5px;
-			}
+				#levelProgress::-webkit-progress-value {
+					background: #F64747;
+					-webkit-transition: background 250ms;
+					-o-transition: background 250ms;
+					transition: background 250ms;
+				}
 
-			.stat-health:before {
-				background-color: #2ecc71;
-			}
+					#levelProgress:hover::-webkit-progress-value {
+						background: #F62459;
+					}
 
-			.stat-mana:before {
-				background-color: #19b5fe;
-			}
-
-			.stat-attack:before {
-				background-color: #eb974e;
-			}
-
-	#calculator {
-		width: calc(100% - 500px);
-		min-width: 525px;
-	}
-
-		#calculator > div {
-			padding: 10px 5px;
-			font-size: 0;
-		}
-
-			#abilities {
-			}
+			#abilities {}
 
 				#abilities > .calc-box {
 					margin: 0 5px;
 				}
 
-			#talents {
+	section {}
 
+		section > div {
+			display: inline-block;
+			vertical-align: top;
+		}
+
+			#heroStats {
+				font-size: 16px;
 			}
 
-				.level:before {
+				.stat:not(:first-child) {
+					margin-top: 10px;
+				}
+
+				.stat:before {
+					display: block;
+					width: 250px;
+					padding: 5px;
+					content: attr(data-stat);
+					text-shadow: 1px 1px 0px rgba(50, 50, 50, 0.44);
+					box-sizing: border-box;
+				}
+
+				.stat > span {
+					display: block;
+					padding-left: 5px;
+				}
+
+				.stat-health:before {
+					background-color: #2ecc71;
+				}
+
+				.stat-mana:before {
+					background-color: #19b5fe;
+				}
+
+				.stat-auto-attacks:before {
+					background-color: #eb974e;
+				}
+
+			#talents {}
+
+				.tier:before {
 					content: attr(data-level);
 					font-size: 40px;
 					font-weight: 800;
@@ -149,31 +160,164 @@ body {
 					width: 100%;
 				}
 
-				.level {
+				.tier {
 					margin: 0 5px;
 					display: inline-block;
 					width: 60px;
 					vertical-align: top;
+          perspective: 600px;
+          perspective-origin: top;
 				}
 
-					.level > label {
+					.tier > label {
 						margin: 5px 0;
 					}
 
-			.calc-box {
+	.calc-box {
+		width: 60px;
+		height: 60px;
+    background-size: contain;
+		display: inline-block;
+		font-size: 16px;
+		box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    outline: 1px solid rgba(29, 29, 29, 1);
+		cursor: pointer;
+    transition: transform 50ms ease-out, border-color 500ms ease-out;
+	}
+
+    .calc-box:not(.active) {
+      border-color: rgba(242, 241, 239, 0.3);
+      transform: rotateY(0deg);
+    }
+
+      .calc-box:not(.active):hover {
+        border-color: rgba(242, 241, 239, 0.7);
+      }
+
+    .calc-box.active {
+      border-color: #22A7F0;
+      transform: rotateY(30deg);
+      -webkit-animation-name: glow;
+      animation-name: glow;
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+      animation-direction: alternate;
+    }
+
+		.calc-box > input {
+			display: none;
+		}
+
+	#tooltip {
+		position: absolute;
+		width: 360px;
+		height: 200px;
+		z-index: 0;
+		background-size: 0;
+	}
+
+		#tooltip::before {
+			width: inherit;
+			height: inherit;
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: inline-block;
+			content: '';
+			z-index: -1;
+
+			background-image: inherit;
+			background-repeat: no-repeat;
+			background-position: 50%;
+			background-size: cover;
+
+			opacity: 0.75;
+		}
+
+		#tooltip > div {
+			height: 100%;
+			display: inline-block;
+			font-size: 14px;
+			vertical-align: top;
+			box-sizing: border-box;
+		}
+
+			#tooltip > .tip-stats {
+				background-color: #f2f1ef;
 				width: 60px;
-				height: 60px;
-				display: inline-block;
-				font-size: 16px;
-				box-sizing: border-box;
-				border: 1px solid #f2f1ef;
-				cursor: pointer;
 			}
 
-				.calc-box > input {
-					display: none;
+				.tip-stats > span {
+					display: inline-block;
+					width: 100%;
+					margin-bottom: 5px;
+					text-align: right;
+					padding: 3px 7px;
+					box-sizing: border-box;
+					position: relative;
+				}
+
+					.tip-stats > span::before {
+						font-family: Icons;
+						display: inline-block;
+						position: absolute;
+						padding: inherit;
+						left: 0;
+						top: 50%;
+						-webkit-transform: translateY(-50%);
+						-ms-transform: translateY(-50%);
+						-o-transform: translateY(-50%);
+						transform: translateY(-50%);
+					}
+
+					.tip-charges {
+						background-color: #00B16A;
+					}
+
+						.tip-charges::before {
+							content: 'q';
+						}
+
+					.tip-cd {
+						background-color: #F64747;
+					}
+
+						.tip-cd::before {
+							content: 'w';
+						}
+
+					.tip-mana {
+						background-color: #19b5fe;
+					}
+
+						.tip-mana::before {
+							content: 'e';
+						}
+
+			#tooltip > .tip-info {
+				width: 300px;
+				padding: 10px;
+				background-color: rgba(23, 23, 23, 0.5);
+			}
+
+				.tip-name {
+					font-size: 26px;
+					font-family: Raleway;
+				}
+
+				.tip-desc > p {
+					margin-top: 0;
 				}
 
 	#talents-chosen {
+		display: none;
+	}
+
+	.hidden {
 		display: none;
 	}

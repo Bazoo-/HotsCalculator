@@ -16,12 +16,14 @@
 
 		if(!this.stats) throw "The stats database needs to be defined";
 
+		this.id = pId;
 		this.stat = this.stats[pId];
 
+		var desc = '#0 ' + this.stat.label;
 		var value = [pValue];
-		var increment = [pIncrement];
+		var increment = pIncrement ? [pIncrement] : pIncrement;
 
-		Item.call(this, this.stat.name, this.stat.label, value, increment);
+		Item.call(this, this.stat.name, desc, value, increment);
 	}
 
 	Stat.prototype = Object.create(Item.prototype);

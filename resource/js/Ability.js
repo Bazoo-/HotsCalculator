@@ -27,7 +27,7 @@
 		var mismatch = ['name', 'desc', 'values', 'increments'];
 
 		for (var i = 0; i < keys.length; i++) {
-			if(~ mismatch.indexOf(keys[i])) {
+			if(mismatch.indexOf(keys[i]) == -1) {
 				this[keys[i]] = ability[keys[i]];
 			}
 		}

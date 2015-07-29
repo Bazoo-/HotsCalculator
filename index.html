@@ -3,123 +3,33 @@
 		<head>
 			<meta charset="UTF-8">
 			<title>Heroes of the Storm - Talents Calculator</title>
+			<link href="http://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+			<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,800" rel="stylesheet" type="text/css">
 			<link rel="stylesheet" href="resource/css/style.css">
 		</head>
 		<body>
 			<div class="container">
-				<div id="generalStats">
-					<div id="hero">
-						<span class="hero-name">Zeratul</span>
-						<span class="button">Change hero</span>
-					</div>
-					<div id="levelSlider">
-						<progress id="levelProgress" value="1" max="30">
-							Level 5
-						</progress>
-					</div>
-					<div id="heroStats">
-						<div class="stat stat-health" data-stat="Health">
-							<span>820 hp</span>
-							<span>1.707 hp/sec</span>
-						</div>
-						<div class="stat stat-mana" data-stat="Mana">
-							<span>500 mana</span>
-							<span>3 mana/sec</span>
-						</div>
-						<div class="stat stat-attack" data-stat="Auto-Attacks">
-							<span>1.11 atk/sec</span>
-							<span>47 dmg</span>
-							<span>52.17 dmg/sec</span>
+				<header>
+					<div id="hero" class="left-side">
+						<span class="hero-name">Nazeebo</span>
+						<div id="levelSlider">
+							<progress id="levelProgress" value="1" max="30"></progress>
 						</div>
 					</div>
-				</div>
-				<div id="calculator">
-					<div id="abilities">
-						<label class="calc-box"><input type="checkbox"></label>
-						<label class="calc-box"><input type="checkbox"></label>
-						<label class="calc-box"><input type="checkbox"></label>
-						<label class="calc-box"><input type="checkbox"></label>
-						<label class="calc-box"><input type="checkbox"></label>
-					</div>
-					<div id="talents">
-						<div class="level" data-level="1">
-							<label for="talent11" class="calc-box"></label>
-							<label for="talent12" class="calc-box"></label>
-							<label for="talent13" class="calc-box"></label>
-							<label for="talent14" class="calc-box"></label>
-							<label for="talent15" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="4">
-							<label for="talent21" class="calc-box"></label>
-							<label for="talent22" class="calc-box"></label>
-							<label for="talent23" class="calc-box"></label>
-							<label for="talent24" class="calc-box"></label>
-							<label for="talent25" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="7">
-							<label for="talent31" class="calc-box"></label>
-							<label for="talent32" class="calc-box"></label>
-							<label for="talent33" class="calc-box"></label>
-							<label for="talent34" class="calc-box"></label>
-							<label for="talent35" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="10">
-							<label for="talent41" class="calc-box"></label>
-							<label for="talent42" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="13">
-							<label for="talent51" class="calc-box"></label>
-							<label for="talent52" class="calc-box"></label>
-							<label for="talent53" class="calc-box"></label>
-							<label for="talent54" class="calc-box"></label>
-							<label for="talent55" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="16">
-							<label for="talent61" class="calc-box"></label>
-							<label for="talent62" class="calc-box"></label>
-							<label for="talent63" class="calc-box"></label>
-							<label for="talent64" class="calc-box"></label>
-						</div>
-						<div class="level" data-level="20">
-							<label for="talent71" class="calc-box"></label>
-							<label for="talent72" class="calc-box"></label>
-							<label for="talent73" class="calc-box"></label>
-							<label for="talent74" class="calc-box"></label>
-						</div>
-					</div>
-				</div>
+					<div id="abilities" class="right-side"></div>
+				</header>
+				<section>
+					<div id="heroStats" class="left-side"></div>
+					<div id="talents" class="right-side"></div>
+				</section>
 			</div>
-			<div id="talents-chosen">
-					<input type="radio" name="level1" id="talent11">
-					<input type="radio" name="level1" id="talent12">
-					<input type="radio" name="level1" id="talent13">
-					<input type="radio" name="level1" id="talent14">
-					<input type="radio" name="level1" id="talent15">
-					<input type="radio" name="level4" id="talent21">
-					<input type="radio" name="level4" id="talent22">
-					<input type="radio" name="level4" id="talent23">
-					<input type="radio" name="level4" id="talent24">
-					<input type="radio" name="level4" id="talent25">
-					<input type="radio" name="level7" id="talent31">
-					<input type="radio" name="level7" id="talent32">
-					<input type="radio" name="level7" id="talent33">
-					<input type="radio" name="level7" id="talent34">
-					<input type="radio" name="level7" id="talent35">
-					<input type="radio" name="level10" id="talent41">
-					<input type="radio" name="level10" id="talent42">
-					<input type="radio" name="level13" id="talent51">
-					<input type="radio" name="level13" id="talent52">
-					<input type="radio" name="level13" id="talent53">
-					<input type="radio" name="level13" id="talent54">
-					<input type="radio" name="level13" id="talent55">
-					<input type="radio" name="level16" id="talent61">
-					<input type="radio" name="level16" id="talent62">
-					<input type="radio" name="level16" id="talent63">
-					<input type="radio" name="level16" id="talent64">
-					<input type="radio" name="level20" id="talent71">
-					<input type="radio" name="level20" id="talent72">
-					<input type="radio" name="level20" id="talent73">
-					<input type="radio" name="level20" id="talent74">
+			<div id="talents-chosen"></div>
+			<div id="tooltip" class="hidden">
+				<div class="tip-stats"></div>
+				<div class="tip-info">
+					<span class="tip-name"></span>
+					<div class="tip-desc"></div>
+				</div>
 			</div>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 			<script src="resource/js/Maths.js"></script>
@@ -128,6 +38,7 @@
 			<script src="resource/js/Ability.js"></script>
 			<script src="resource/js/Talent.js"></script>
 			<script src="resource/js/Hero.js"></script>
+			<script src="resource/js/Tooltip.js"></script>
 			<script src="resource/js/script.js"></script>
 		</body>
 	</html>

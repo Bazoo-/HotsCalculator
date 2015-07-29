@@ -30,7 +30,7 @@
 		var mismatch = ['name', 'desc', 'values', 'increments'];
 
 		for (var i = 0; i < keys.length; i++) {
-			if(~ mismatch.indexOf(keys[i])) {
+			if(mismatch.indexOf(keys[i]) == -1) {
 				this[keys[i]] = talent[keys[i]];
 			}
 		}
@@ -47,13 +47,17 @@
 		this.affectedAbilities = [];
 		this.affectedStats = [];
 
-		for (var i = 0; i < this.abilitiesNum.length; i++) {
-			this.affectedAbilities[i] = this.abilities[this.abilitiesNum[i]];
+		if(this.abilitiesNum) {
+			for (var i = 0; i < this.abilitiesNum.length; i++) {
+				this.affectedAbilities[i] = this.abilities[this.abilitiesNum[i]];
+			}
 		}
 
-		for (var x = 0; x < this.statsId.length; x++) {
-			for (var y = 0; y < pStats.length; y++) {
-				if(pStats[y].id === this.statsId[x]) this.affectedStats[x] = pStats[y];
+		if(this.statsId) {
+			for (var x = 0; x < this.statsId.length; x++) {
+				for (var y = 0; y < pStats.length; y++) {
+					if(pStats[y].id === this.statsId[x]) this.affectedStats[x] = pStats[y];
+				}
 			}
 		}
 	};
@@ -61,30 +65,37 @@
 	Talent.prototype.activateTalent = function() {
 		if(!this.abilitiesNum && !this.statsId) return;
 
-		this.abilitiesCodes = [];
-		this.statsCodes = [];
-
-		for (var i = 0; i < this.abilitiesNum.length; i++) {
-			this.abilitiesCodes[i] = this.affectedAbilities[i].addModifiers(this.abilitiesMods[i]);
+		if(this.abilitiesNum) {
+			this.abilitiesCodes = [];
+			for (var i = 0; i < this.abilitiesNum.length; i++) {
+				this.abilitiesCodes[i] = this.affectedAbilities[i].addModifiers(this.abilitiesMods[i]);
+			}
 		}
 
-		for (var x = 0; x < this.statsId.length; x++) {
-			this.statsCodes[x] = this.affectedStats[x].addModifiers(this.statsMods[x]);
+		if(this.statsId) {
+			this.statsCodes = [];
+			for (var x = 0; x < this.statsId.length; x++) {
+				this.statsCodes[x] = this.affectedStats[x].addModifiers(this.statsMods[x]);
+			}
 		}
 	};
 
 	Talent.prototype.deactivateTalent = function() {
-		if(!this.abilitiesNum && !this.statsId) return;
+		if(!this.abilitiesCodes && !this.statsCodes) return;
 
-		for (var i = 0; i < this.abilitiesNum.length; i++) {
-			this.affectedAbilities[i].removeModifiers(this.abilitiesCodes[i]);
+		if(this.abilitiesCodes) {
+			for (var i = 0; i < this.abilitiesNum.length; i++) {
+				this.affectedAbilities[i].removeModifiers(this.abilitiesCodes[i]);
+			}
+			this.abilitiesCodes = undefined;
 		}
-		this.abilitiesCodes = undefined;
 
-		for (var x = 0; x < this.statsId.length; x++) {
-			this.affectedStats[x].removeModifiers(this.statsCodes[x]);
+		if(this.statsCodes) {
+			for (var x = 0; x < this.statsId.length; x++) {
+				this.affectedStats[x].removeModifiers(this.statsCodes[x]);
+			}
+			this.statsCodes = undefined;
 		}
-		this.statsCodes = undefined;
 	};
 
 	window.Talent = Talent;

@@ -43,12 +43,18 @@
 
 	{
 		"id" : 7,
+		"name" : "auto-attacks",
+		"label" : "dmg/sec"
+	},
+
+	{
+		"id" : 8,
 		"name" : "fury",
 		"label" : "fury"
 	},
 
 	{
-		"id" : 8,
+		"id" : 9,
 		"name" : "brew",
 		"label" : "brew"
 	}

@@ -23,12 +23,7 @@
 		this.values = pValues;
 		this.increments = pIncrements;
 
-		// Correct operand?
-		if(this.values && this.increments) {
-			this.updateValues();
-		} else {
-			this.desc = pDescription;
-		}
+		this.updateValues();
 	}
 
 	/**
@@ -38,12 +33,15 @@
 		*/
 
 	Item.prototype.modifyDesc = function(pValues) {
+
 		var newDesc;
 		for(var i = 0; i < pValues.length; i++) {
-			var regexV = new RegExp('#' + i);
-			if(!i) newDesc = this.rawDesc.replace(regex, pValues[i]);
-			newDesc = newDesc.replace(regexV, pValues[i]);
+			var regex = new RegExp('#' + i);
+			var value = Math.round(pValues[i]) == pValues[i] ? pValues[i] : pValues[i].toFixed(2);
+			if(!i) newDesc = this.rawDesc.replace(regex, value);
+			newDesc = newDesc.replace(regex, value);
 		}
+
 		return newDesc;
 	};
 
@@ -53,10 +51,6 @@
 		*/
 
 	Item.prototype.levelUpdate = function() {
-
-		if(!this.values && !this.increments) {
-			return;
-		}
 
 		var newValues = [];
 
@@ -73,6 +67,15 @@
 		*/
 
 	Item.prototype.updateValues = function () {
+
+		if(!this.values && !this.increments) {
+			this.desc = this.rawDesc;
+			return;
+		} else if(!this.increments) {
+			this.desc = this.modifyDesc(this.values);
+			return;
+		}
+
 		var plusMods = [];
 		var multMods = [];
 
@@ -84,8 +87,7 @@
 		for (var i = 0; i < this.modifiers.length; i++) {
 			for (var y = 0; y < this.values.length; y++) {
 				var mod = this.modifiers[i][y];
-
-				if(mod.substring(0, 1) === '*') {
+				if(mod.toString().charAt(0) === '*') {
 					multMods[y] += parseFloat(mod.substring(1));
 				} else {
 					plusMods[y] += mod;
