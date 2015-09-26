@@ -14,14 +14,29 @@
 
 	var tooltip = new Tooltip();
 
-	$(levelProgressBar).on('mousedown', function(e) {
-		changeLevel(e);
-		$(this).on('mousemove', changeLevel);
-	});
+	listeners();
 
-	$(window).on('mouseup', function() {
-		$(levelProgressBar).off('mousemove', changeLevel);
-	});
+	function listeners() {
+		$(levelProgressBar).on('mousedown', function(e) {
+			changeLevel(e);
+			$(this).on('mousemove', changeLevel);
+			$(window).on('mouseup', removeMouseUp);
+
+			function removeMouseUp(e) {
+				$(levelProgressBar).off('mousemove', changeLevel);
+				$(window).off('mouseup', removeMouseUp);
+			}
+		});
+
+		$('#heroName').on('click', selectionWindow);
+		$('#heroSelect').on('click', selectionWindow);
+
+		function selectionWindow(e) {
+			if( e.target != this ) return;
+			$('#heroSelect').toggleClass('selection');
+			$('.selection > #heroInput').focus();
+		}
+	}
 
 	$(document).ready(function() {
 		jsonArray('heroes', setDatabase);
@@ -47,18 +62,40 @@
 				Ability.prototype.abilities = Talent.prototype.abilitiesDb = database.abilities;
 				Talent.prototype.talentsDb = database.talents;
 
-				changeHero();
+				changeHero(1);
+				createHeroes();
 			}
 		}
 
 	// Heroes
 
-		function changeHero() {
-			hero = new Hero(1);
+		function createHeroes() {
+			for (var i = 1; i < database.heroes.length; i++) {
+				var heroId = database.heroes[i].id;
+				var heroName = database.heroes[i].name;
+				var heroRole = database.heroes[i].role;
+				$('#heroes').append('<span class="hero" data-id="' + heroId + '" data-name="' + heroName + '" data-desc="' + heroRole + '"></span>');
+			}
+			$('#heroes > .hero').click(function() {
+				var heroId = $(this).attr('data-id');
+				$('#heroSelect').removeClass('selection');
+				changeHero(heroId);
+			});
+		}
+
+		function changeHero(pId) {
+			hero = new Hero(pId);
+
+			$('#heroName').html(hero.name);
+
 			objects = hero.getObjects();
 			abilities = objects.abilities;
 			stats = objects.stats;
 			updateDps();
+
+			eraseStats();
+			eraseTalents();
+			eraseAbilities();
 
 			Talent.prototype.abilities = abilities;
 
@@ -103,7 +140,7 @@
 			var statClass = '.stat.stat-' + pStat.name;
 			var $statDiv = $(statClass);
 			if(!$statDiv.length) {
-				$('#heroStats').append('<div class="stat stat-' + pStat.name + '" data-stat="' + capitalize(pStat.name) + '"></div>');
+				$('#heroStats').append('<div class="stat tips stat-' + pStat.name + '" data-stat="' + capitalize(pStat.name) + '"></div>');
 				createStat(pStat);
 				return;
 			}
@@ -118,7 +155,11 @@
 	// Abilities
 
 		function createAbility(pAbility, pId) {
-			$('#abilities').append('<label class="calc-box ability" data-id="'+ pId +'" style="background-image:url(resource/img/'+ pAbility.src +'.png)"><input type="checkbox"></label>');
+			$('#abilities').append('<label class="calc-box ability" data-id="'+ pId +'" style="background-image:url(resource/img/icon/'+ pAbility.src +'.png)"><input type="checkbox"></label>');
+		}
+
+		function eraseAbilities() {
+			$('#abilities').empty();
 		}
 
 	// Talents
@@ -133,8 +174,12 @@
 		}
 
 		function createTalent(pTalent, pNum, pTier) {
-			$('.tier[data-level='+ pTier +']').append('<label for="talent' + pNum + '" data-id="'+ pNum +'" class="calc-box talent" style="background-image:url(resource/img/'+ pTalent.src +'.png)"></label>');
+			$('.tier[data-level='+ pTier +']').append('<label for="talent' + pNum + '" data-id="'+ pNum +'" class="calc-box talent" style="background-image:url(resource/img/icon/'+ pTalent.src +'.png)"></label>');
 			$('#talents-chosen').append('<input type="radio" name="tier'+ pTier +'" id="talent'+ pNum +'">');
+		}
+
+		function eraseTalents() {
+			$('#talents').empty();
 		}
 
 	// Talents Chosen
@@ -185,8 +230,8 @@
 		function moveTooltip(e) {
 			switch (e.type) {
 				case 'mousemove':
-					var posLeft = e.pageX + 380 < window.innerWidth ? e.pageX + 20 : e.pageX - 380;
-					var posRight = e.pageY + 220 < window.innerHeight ? e.pageY + 20 : e.pageY - 220;
+					var posLeft = e.pageX + 430 < window.innerWidth ? e.pageX + 20 : e.pageX - 380;
+					var posRight = e.pageY + 270 < window.innerHeight ? e.pageY + 20 : e.pageY - 220;
 
 					$tooltip.css({
 						left: posLeft,
@@ -226,14 +271,14 @@
 			}
 			$('#tooltip .tip-desc').empty().append(desc);
 
-			$tooltip.css('background-image', 'url(resource/img/' + tooltip.src + '.png)');
+			$tooltip.css('background-image', 'url(resource/img/icon/' + tooltip.src + '.png)');
 
 			var mismatchTip = ['name', 'desc', 'src'];
 			var keys = Object.keys(tooltip);
 			$('#tooltip .tip-stats').empty();
 			for (var x = 0; x < keys.length; x++) {
 				if(mismatchTip.indexOf(keys[x]) == -1) {
-					$('#tooltip .tip-stats').append('<span class="tip-' + keys[x] + '">' + tooltip[keys[x]] + '</span>');
+					$('#tooltip .tip-stats').append('<span class="hero-icon ' + keys[x] + '">' + tooltip[keys[x]] + '</span>');
 				}
 			}
 

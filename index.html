@@ -9,20 +9,35 @@
 		</head>
 		<body>
 			<div class="container">
+				<nav id="heroSelect" class="selection">
+					<input id="heroInput" type="text" placeholder="Type a Hero Name" autofocus>
+					<div class="buttons">
+						<input type="checkbox" class="button hero-icon warrior">
+						<input type="checkbox" class="button hero-icon assassin">
+						<input type="checkbox" class="button hero-icon support">
+						<input type="checkbox" class="button hero-icon specialist">
+					</div>
+					<div id="heroes"></div>
+				</nav>
 				<header>
-					<div id="hero" class="left-side">
-						<span class="hero-name">Nazeebo</span>
+					<span id="heroName" class="left-side"></span>
+					<div id="abilities" class="right-side"></div>
+				</header>
+				<section id="hero">
+					<div id="heroInfo" class="left-side">
 						<div id="levelSlider">
 							<progress id="levelProgress" value="1" max="30"></progress>
 						</div>
+						<div id="heroStats"></div>
 					</div>
-					<div id="abilities" class="right-side"></div>
-				</header>
-				<section>
-					<div id="heroStats" class="left-side"></div>
 					<div id="talents" class="right-side"></div>
 				</section>
 			</div>
+			<!--
+			<div id="background">
+				<video loop autoplay src="http://media.blizzard.com/heroes/videos/heroes/skins/nazeebo_hereticWitchDoctor.webm" type="video/webm"></video>
+			</div>
+			-->
 			<div id="talents-chosen"></div>
 			<div id="tooltip" class="hidden">
 				<div class="tip-info">
@@ -30,7 +45,7 @@
 					<div class="tip-desc"></div>
 				</div>
 				<canvas id="demo-canvas"></canvas>
-				<div class="tip-stats"></div>
+				<div class="tip-stats tips"></div>
 			</div>
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 			<script src="resource/js/Maths.js"></script>
